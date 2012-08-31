@@ -23,8 +23,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-wgp.MapStateElementView = Backbone.View.extend({
+wgp.MapStateElementViewWithRemovingMethod = Backbone.View.extend({
     initialize:function(argument){
+    	console.log('msev init')
     	_.bindAll();
         this._paper = argument.paper;
         if (this._paper == null) {
@@ -35,11 +36,13 @@ wgp.MapStateElementView = Backbone.View.extend({
         this.render();
     },
     render:function(){
-    	var color = "rgba(100,100,100,0.05)";
-    	this.model.set({"attributes" : {fill:color}}, {silent:true});
+    	console.log('msev render')
+    	var color = this.model.attributes.color;
+    	this.model.set({"attributes" : {fill:color, stroke:"#136787"}}, {silent:true});
     	this.element = new ellipse(this.model.attributes, this._paper);
     },
     update:function(model){
+    	console.log('msev change')
         var instance = this;
     	var color = this.getStateColor();
     	this.model.set({"fill":color}, {silent:true});
@@ -47,6 +50,11 @@ wgp.MapStateElementView = Backbone.View.extend({
     },
     remove:function(property){
         this.element.object.remove();
+        this.glow.remove();
+    },
+    hide:function(){
+        this.element.hide();
+        this.glow.remove();
     },
     getStateColor:function(){
         var state = this.model.get("state");

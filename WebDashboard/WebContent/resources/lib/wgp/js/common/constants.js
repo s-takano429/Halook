@@ -23,6 +23,8 @@ wgp.constants.CHANGE_TYPE = {};
 wgp.constants.CHANGE_TYPE.ADD = "add";
 wgp.constants.CHANGE_TYPE.DELETE = "delete";
 wgp.constants.CHANGE_TYPE.UPDATE = "update";
+wgp.constants.CHANGE_TYPE.ANIMATE = "animate";
+
 
 wgp.constants.STATE = {};
 wgp.constants.STATE.NORMAL = "normal";

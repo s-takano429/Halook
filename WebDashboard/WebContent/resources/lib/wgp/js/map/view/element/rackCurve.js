@@ -23,8 +23,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-wgp.MapStateElementView = Backbone.View.extend({
+wgp.RackCurve = Backbone.View.extend({
     initialize:function(argument){
+    	
+    	var args = argument.model.attributes;
+   	
+    	this.model.attributes.pointX = args.centerX;//args.centerX + args.radius * Math.cos(args.from * Math.PI / 180);
+    	this.model.attributes.pointY = args.centerY;// + args.radius * Math.cos(args.to * Math.PI / 180);
+    	this.model.attributes.width = -args.radius * Math.cos((args.to - args.from) * Math.PI / 180);
+    	this.model.attributes.height = -args.radius * Math.sin((args.to - args.from) * Math.PI / 180);
+
     	_.bindAll();
         this._paper = argument.paper;
         if (this._paper == null) {
@@ -35,9 +43,10 @@ wgp.MapStateElementView = Backbone.View.extend({
         this.render();
     },
     render:function(){
-    	var color = "rgba(100,100,100,0.05)";
-    	this.model.set({"attributes" : {fill:color}}, {silent:true});
-    	this.element = new ellipse(this.model.attributes, this._paper);
+    	var color = this.model.attributes.color;
+    	this.model.set({"attributes" : {fill:"", stroke:color, "stroke-width":"7px"}}, {silent:true});
+    	this.element = new arc(this.model.attributes, this._paper);
+    	//this.remove();
     },
     update:function(model){
         var instance = this;
@@ -45,8 +54,14 @@ wgp.MapStateElementView = Backbone.View.extend({
     	this.model.set({"fill":color}, {silent:true});
     	this.element.setAttributes(model);
     },
+    hide:function(){
+        this.element.hide();
+        this.glow.remove();
+    },
     remove:function(property){
-        this.element.object.remove();
+        //this.element.object.remove();
+        this.element.hide();
+        this.glow.remove();
     },
     getStateColor:function(){
         var state = this.model.get("state");

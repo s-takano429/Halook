@@ -25,13 +25,11 @@ wgp.constants.CHANGE_TYPE.DELETE = "delete";
 wgp.constants.CHANGE_TYPE.UPDATE = "update";
 
 wgp.constants.STATE = {};
-wgp.constants.STATE.SUCCESS = "success";
 wgp.constants.STATE.NORMAL = "normal";
 wgp.constants.STATE.WARN = "warn";
 wgp.constants.STATE.ERROR = "error";
 
 wgp.constants.STATE_COLOR = {};
-wgp.constants.STATE_COLOR[wgp.constants.STATE.SUCCESS]="#0000FF";
 wgp.constants.STATE_COLOR[wgp.constants.STATE.NORMAL]="#00FF00";
 wgp.constants.STATE_COLOR[wgp.constants.STATE.WARN]="#FFFF00";
 wgp.constants.STATE_COLOR[wgp.constants.STATE.ERROR]="#FF0000";
