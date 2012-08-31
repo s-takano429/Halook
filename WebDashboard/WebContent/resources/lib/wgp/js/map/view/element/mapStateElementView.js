@@ -35,9 +35,9 @@ wgp.MapStateElementView = Backbone.View.extend({
         this.render();
     },
     render:function(){
-    	var color = "rgba(100,100,100,0.05)";
+    	var color = this.getStateColor();
     	this.model.set({"attributes" : {fill:color}}, {silent:true});
-    	this.element = new ellipse(this.model.attributes, this._paper);
+    	this.element = new line(this.model.attributes, this._paper);
     },
     update:function(model){
         var instance = this;
@@ -46,7 +46,7 @@ wgp.MapStateElementView = Backbone.View.extend({
     	this.element.setAttributes(model);
     },
     remove:function(property){
-        this.element.object.remove();
+        this.element.hide();
     },
     getStateColor:function(){
         var state = this.model.get("state");

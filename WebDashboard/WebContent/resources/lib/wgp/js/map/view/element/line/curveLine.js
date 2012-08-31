@@ -7,6 +7,7 @@
  Date: 2012-04-29
 */
 function curveLine(elementProperty, paper) {
+
     // 設定が取得できない場合は処理を終了する。
     if (!elementProperty) {
         return this;
