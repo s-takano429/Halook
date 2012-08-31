@@ -1,4 +1,3 @@
-
 wgp.AbstractView = Backbone.View.extend({
 	initialize: function(){
 		this.viewType = wgp.constants.VIEW_TYPE.VIEW;

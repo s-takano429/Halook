@@ -30,7 +30,6 @@ wgp.AppView = Backbone.View.extend({
 		_.each(notificationList, function(notification, index) {
 			var windowId = notification.windowId;
 			var view = viewList[windowId];
-
 			if(view != null && view != undefined){
 				var updateDataArray = notification.data;
 
