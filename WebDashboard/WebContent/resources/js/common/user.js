@@ -1,30 +1,77 @@
+var osMemoryGraphViewElement = {
+	viewClassName : "ResourceGraphElementView",
+	viewAttribute : {
+		width : 250,
+		height : 150,
+		graphId : "osMemory",
+		attributes : {
+			xlabel : "Time",
+			ylabel : "OS Memory",
+			labels : [ "time", "PC1", "PC2" ]
+		}
+	}
+};
+
+var osCpuGraphViewElement = {
+	viewClassName : "ResourceGraphElementView",
+	viewAttribute : {
+		title :"title",
+		width : 300,
+		height : 200,
+		graphId : "osCPU",
+		attributes : {
+			xlabel : "Time",
+			ylabel : "OS CPU ",
+			labels : [ "time", "PC1", "PC2", "PC3" ]
+		}
+	}
+};
+
+var nnCpuGraphViewElement = {
+	viewClassName : "ResourceGraphElementView",
+	viewAttribute : {
+		width : 250,
+		height : 150,
+		graphId : "nnCPU",
+		attributes : {
+			xlabel : "Time",
+			ylabel : "nn CPU",
+			labels : [ "time", "PC1", "PC2" ]
+		}
+	}
+};
 
 var memoryGraphViewElement = {
-	viewClassName : "wgp.DygraphElementView",
+	viewClassName : "ResourceGraphElementView",
 	viewAttribute : {
-		width: 300,
-		height: 300,
-		graphId: "Memory",
+		width : 200,
+		height : 150,
+		graphId : "Memory",
 		attributes : {
-			xlabel: "Time",
-			ylabel: "Memory",
-			labels:["time","PC1","PC2"]
+			xlabel : "Time",
+			ylabel : "Memory",
+			labels : [ "time", "PC1", "PC2", "PC3" ]
 		}
 	}
 };
 
 var cpuGraphViewElement = {
-	viewClassName : "wgp.DygraphElementView",
+	viewClassName : "ResourceGraphElementView",
 	viewAttribute : {
-		width: 300,
-		height: 300,
-		graphId: "CPU",
+		width : 200,
+		height : 150,
+		graphId : "CPUs",
 		attributes : {
-			xlabel: "Time",
-			ylabel: "CPU ",
-			labels:["time","PC1","PC2"]
+			xlabel : "Time",
+			ylabel : "CPU ",
+			valueRange : [ 0, 100 ],
+			labels : [ "time", "PC1", "PC2", "PC3" ]
 		}
 	}
+};
+
+var separaterElement = {
+	viewClassName : "SeparaterElementView"
 };
 
 var mapTabElement = {
@@ -32,49 +79,33 @@ var mapTabElement = {
 	tabTitle : "Map",
 };
 
-var ganttChartTabElement = {
-		viewClassName : "wgp.MapView",
-		tabTitle : "ガントチャート",
-	};
-
-var graphAreaTabElement = { 
+var graphAreaTabElement = {
 	viewClassName : "wgp.MultiAreaView",
-	rootView:appView,
+	rootView : appView,
 	tabTitle : "Graph",
-	collection :[memoryGraphViewElement, cpuGraphViewElement]
+	collection : [ memoryGraphViewElement, cpuGraphViewElement,
+			osCpuGraphViewElement, separaterElement, nnCpuGraphViewElement ]
 };
 
 var tabViewElement = {
-	viewClassName: "wgp.TabView",
-	rootView:appView,
-	collection:[mapTabElement, graphAreaTabElement]
+	viewClassName : "wgp.TabView",
+	rootView : appView,
+	collection : [ mapTabElement, graphAreaTabElement ]
 };
 
-var tabViewElement2 = {
-		viewClassName: "wgp.TabView",
-		rootView:appView,
-		collection:[ganttChartTabElement, graphAreaTabElement, graphAreaTabElement]
-	};
-
-var ganttChartViewElement = {
-		viewClassName : "ganttChartView",
-		rootView : appView
+var nodeInfomationViewElement = {
+	viewClassName : "NodeInfomationView",
 };
 
-var ganttChartMultiElement = {
-		viewClassName : "wgp.MultiAreaView",
-		rootView : appView,
-		collection : [ganttChartViewElement]
+var nodeInfomationMultiElement = {
+	viewClassName : "wgp.MultiAreaView",
+	rootView : appView,
+	tabTitle : "nodeInfo",
+	collection : [ nodeInfomationViewElement ]
 };
-
-//wgp.constants.VIEW_SETTINGS = {
-//	"default" : graphAreaTabElement,
-//	"/graph1/" : tabViewElement,
-//	"/ganttchart/" :tabViewElement2
-//	
-//};
 
 wgp.constants.VIEW_SETTINGS = {
-		"default" : ganttChartMultiElement,
-		"/ganttchart/" : ganttChartMultiElement
-	};
+	"default" : graphAreaTabElement,
+	"/graph1/" : tabViewElement,
+	"/nodeInfomation/" : nodeInfomationMultiElement
+};
