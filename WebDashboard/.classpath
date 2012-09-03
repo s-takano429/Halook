@@ -37,12 +37,12 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aspectjlib-1.6.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aspectjweaver-1.6.11.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cglib-nodep-2.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/AcroWorks/Tools/apache-tomcat-7.0.29/lib/tomcat-coyote.jar"/>
+	<classpathentry kind="lib" path="C:/AcroWorks/Tools/apache-tomcat-7.0.29/lib/catalina.jar"/>
 	<classpathentry kind="var" path="TOMCAT_HOME/lib/servlet-api.jar"/>
 	<classpathentry kind="var" path="TOMCAT_HOME/lib/jasper.jar"/>
 	<classpathentry kind="var" path="TOMCAT_HOME/lib/jsp-api.jar"/>
 	<classpathentry kind="var" path="TOMCAT_HOME/lib/el-api.jar"/>
 	<classpathentry kind="var" path="TOMCAT_HOME/lib/annotations-api.jar"/>
-	<classpathentry kind="var" path="TOMCAT_HOME/lib/catalina.jar"/>
-	<classpathentry kind="var" path="TOMCAT_HOME/lib/tomcat-coyote.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

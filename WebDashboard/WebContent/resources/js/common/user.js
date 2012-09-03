@@ -1,8 +1,8 @@
 var osMemoryGraphViewElement = {
 	viewClassName : "ResourceGraphElementView",
 	viewAttribute : {
-		width : 250,
-		height : 150,
+		width : 260,
+		height : 200,
 		graphId : "osMemory",
 		attributes : {
 			xlabel : "Time",
@@ -15,8 +15,8 @@ var osMemoryGraphViewElement = {
 var osCpuGraphViewElement = {
 	viewClassName : "ResourceGraphElementView",
 	viewAttribute : {
-		title :"title",
-		width : 300,
+		title : "title",
+		width : 260,
 		height : 200,
 		graphId : "osCPU",
 		attributes : {
@@ -30,8 +30,8 @@ var osCpuGraphViewElement = {
 var nnCpuGraphViewElement = {
 	viewClassName : "ResourceGraphElementView",
 	viewAttribute : {
-		width : 250,
-		height : 150,
+		width : 260,
+		height : 200,
 		graphId : "nnCPU",
 		attributes : {
 			xlabel : "Time",
@@ -44,8 +44,8 @@ var nnCpuGraphViewElement = {
 var memoryGraphViewElement = {
 	viewClassName : "ResourceGraphElementView",
 	viewAttribute : {
-		width : 200,
-		height : 150,
+		width : 260,
+		height : 200,
 		graphId : "Memory",
 		attributes : {
 			xlabel : "Time",
@@ -58,8 +58,8 @@ var memoryGraphViewElement = {
 var cpuGraphViewElement = {
 	viewClassName : "ResourceGraphElementView",
 	viewAttribute : {
-		width : 200,
-		height : 150,
+		width : 260,
+		height : 200,
 		graphId : "CPUs",
 		attributes : {
 			xlabel : "Time",

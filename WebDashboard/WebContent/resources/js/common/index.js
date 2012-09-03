@@ -83,15 +83,23 @@ var graphDataInterval = function(windowId, value) {
 	return innerFunction;
 }
 
-setInterval(graphData3Interval("Memory", 18), 1000);
-setInterval(graphData3Interval("CPU", 25), 1000);
-setInterval(graphData3Interval("osCPU", 25), 1000);
-setInterval(graphData3Interval("CPUs", 50), 1000);
-setInterval(graphDataInterval("nnCPU", 80), 1000);
-setInterval(graphDataInterval("nnMemory", 80), 1000);
-setInterval(function() {
-	nodeInfomationMock()
-}, 1000);
+function prepareData(windowId, value, dataNum) {
+	for ( var index = 0; index < dataNum; index++) {
+		graphData3Interval(windowId, 18);
+	}
+}
+
+//prepareDate("Memory",16);
+
+ setInterval(graphData3Interval("Memory", 18), 1000);
+ setInterval(graphData3Interval("CPU", 25), 1000);
+ setInterval(graphData3Interval("osCPU", 25), 1000);
+ setInterval(graphData3Interval("CPUs", 50), 1000);
+ setInterval(graphDataInterval("nnCPU", 80), 1000);
+ setInterval(graphDataInterval("nnMemory", 80), 1000);
+// setInterval(function() {
+// nodeInfomationMock()
+// }, 1000);
 
 var property1 = {
 	type : wgp.constants.CHANGE_TYPE.ADD,

@@ -62,14 +62,11 @@
 
 
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/styles.css"
-	type="text/css" media="all">
-<link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/nodeInfo/iThing.css"
 	type="text/css" media="all">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/ui.slider.extras.css"
 	type="text/css" media="all">
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/styles.css"
+	href="<%=request.getContextPath()%>/resources/css/nodeInfo/nodeStyles.css"
 	type="text/css" media="all">
