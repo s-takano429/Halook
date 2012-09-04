@@ -1,28 +1,5 @@
 wgp.DataNodeRectangle = Backbone.View.extend({
     initialize:function(argument){
-    	/*
-    	var args = argument.model.attributes;
-    	var angleRadian = args.angle * Math.PI / 180;
-    	var angleRadianPlus = (args.angle + 90) * Math.PI / 180;
-    	var angleRadianMinus = (args.angle - 90) * Math.PI / 180;
-    	
-    	this.model.attributes.origin = {
-    		x : (args.radius + args.height) * Math.cos(angleRadian) //ラジアンにする
-    				+ args.width * Math.cos(angleRadianMinus)/2,
-    		y : (args.radius + args.height) * Math.sin(angleRadian) //ラジアンにする
-    				+ args.width * Math.sin(angleRadianMinus)/2
-    	};
-    	
-    	this.model.attributes.topEdge = {
-    		x :  args.width * Math.cos(angleRadianPlus),
-    		y : args.width * Math.sin(angleRadianPlus)
-    	};
-
-    	this.model.attributes.leftEdge = {
-    		x :  -args.height * Math.cos(angleRadian),
-    		y : -args.height * Math.sin(angleRadian)
-    	};
-    	*/
        	_.bindAll();
     	this.center = argument.center;
         this._paper = argument.paper;
@@ -31,19 +8,48 @@ wgp.DataNodeRectangle = Backbone.View.extend({
             return;
         }
         this.id = this.model.get("objectId");
-    	this.model.set({"attributes" : {fill:"#3aa6d0", stroke:"#136787"}}, {silent:true});
+    	this.model.set({"attributes" : 
+    						{
+    							fill:this.model.get("color"),
+    							stroke:this.model.get("strokeColor")
+    						}
+    					},
+    					{silent:true}
+    	);
+    	this.host = this.model.attributes.host;
+    	this.capacity = this.model.attributes.capacity;
         this.render();
     },
     render:function(){
     	this.element = new rotatedRectangle(this.model.attributes, this._paper);
-    	//this.element.object.mouseover = function (){alert("aaa");};
-    	//console.log(this.element.object);
+    	var self = this;
+    	var usage = parseInt(this.model.attributes.height / this.capacity * 100);
+    	this.element.object.mouseover(function (){
+    		$("#nodeStatusBox").html("host : "+self.host+"<br>capacity : "+self.capacity+"<br>usage : "+usage+"%");
+    		$("#nodeStatusBox").css("display","block");
+    		$("#nodeStatusBox").css("top",parseInt(this.attrs.path[0][2]+50));
+    		$("#nodeStatusBox").css("left",parseInt(this.attrs.path[0][1]+50));
+    		$("#nodeStatusBox").css("background-color","rgba(255,255,255,0.9)");
+    		$("#nodeStatusBox").css("color","#222222");
+    		$("#nodeStatusBox").css("z-index",100);    		
+    	});
+    	this.element.object.mouseout(function (){
+    		$("#nodeStatusBox").css("display","none");
+    	});
     	//this.glow = this.element.object.glow({width:20,color:"#fff",opacity:0.3});
     },
     update:function(model){
     	this.element.object.hide();
     	this.hide();
     	this.element.setAttributes(model);
+    	this.model.set({"attributes" : 
+		{
+			fill:this.model.get("color"),
+			stroke:this.model.get("strokeColor")
+		}
+	},
+	{silent:true}
+);
     	this.render();
     },
     hide:function(){

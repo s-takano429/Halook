@@ -13,16 +13,6 @@ function rotatedRectangle(elementProperty, paper){
 		return this;
 	}
 
-	
-    // 数値に直す。
-	/*
-    elementProperty.pointX = parseFloat(elementProperty.centerX);
-    elementProperty.pointY = parseFloat(elementProperty.pointY);
-    elementProperty.width = parseFloat(elementProperty.width);
-    elementProperty.height = parseFloat(elementProperty.height);
-    console.log(elementProperty.centerX);
-    */
-
 	var positionArray = this.createPositionArray(elementProperty);
     this.createMapElement(positionArray, paper);
     this.object.attr("fill","white");
@@ -56,9 +46,9 @@ function rotatedRectangle(elementProperty, paper){
 rotatedRectangle.prototype = new mapElement();
 
 rotatedRectangle.prototype.createPositionArray = function(args){
-	var angleRadian = args.angle * Math.PI / 180;
-	var angleRadianPlus = (args.angle + 90) * Math.PI / 180;
-	var angleRadianMinus = (args.angle - 90) * Math.PI / 180;
+	var angleRadian = args.angle;
+	var angleRadianPlus = args.angle + Math.PI / 2;
+	var angleRadianMinus = args.angle - Math.PI / 2;
 	
 	var origin = {
 		x : (args.radius + args.height) * Math.cos(angleRadian) //ラジアンにする

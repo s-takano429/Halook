@@ -1,0 +1,23 @@
+/*NEW SLIDER STYLES FOR SCALE, ETC*/
+/* slider widget */
+.graphAnnotationMultiple {
+	color : red;
+	background-color: black;
+	border: 0px black solid;
+}
+.graphAnnotationCompaction_minor {
+	color : black;
+	background-color: #00E7F2;
+	border: 0px #00E7F2 solid;
+}
+.graphAnnotationCompaction_major {
+	color : black;
+	background-color: #0079F2;
+	border: 0px #0079F2 solid;
+}
+.graphAnnotationSplit {
+	color : black;
+	background-color: #36F200;
+	border: 0px #36F200 solid;
+}
+

@@ -2,50 +2,28 @@
 <html>
 <head>
 <%@ include file="../common/javaScriptInclude.jsp"%>
-<%-- hbase graph --%>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/hbase/mock/hbaseData.js">
+<script
+	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/model/nodeInfomationModel.js"
+	type="text/javaScript"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/nodeInfomationView.js"
+	type="text/javaScript"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/mock/nodeInfomationMock.js"
+	type="text/javaScript"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/model/resourceGraphModel.js"
+	type="text/javaScript"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/resourceGraphView.js"
+	type="text/javaScript"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/separaterElementView.js"
+	type="text/javaScript"></script>
 
-</script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/hbase/model/hbaseModel.js">
-
-</script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/hbase/mock/hbaseMock.js">
-
-</script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/hbase/view/hbaseView.js">
-
-</script>
-
-<%-- dual slider --%>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/common/selectToUISlider.jQuery.js">
-
-</script>
-<link rel="Stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/hbase/ui.slider.extras.css"
-	type="text/css" />
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/hbase/view/DualSliderView.js">
-
-</script>
-
-<%-- parent view --%>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/hbase/model/hbaseParentModel.js">
-
-</script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/hbase/view/hbaseParentView.js">
-
-</script>
-
+<style type="text/css">
+</style>
 </head>
-
-
 <body id="main" oncontextmenu="return false;" onload="self.focus();">
 	<div id="menuBar_" style="width: 1280px; height: 20px;"></div>
 	<div id="toolBar_" style="width: 1280px; height: 25px;"></div>
@@ -66,8 +44,9 @@
 		viewArea2.rowspan = 1;
 		viewArea2.colspan = 1;
 
-		var table = [ [ new wgp.PerspactiveModel(viewArea1),
-				new wgp.PerspactiveModel(viewArea2) ] ];
+		var table = [
+				[ new wgp.PerspactiveModel(viewArea1),
+						new wgp.PerspactiveModel(viewArea2) ], ];
 		var perspactiveView = new wgp.PerspactiveView({
 			id : "persArea",
 			collection : table
@@ -83,7 +62,7 @@
 
 	<script>
 		setInterval(function() {
-			hbaseMock()
+			nodeInfomationMock()
 		}, 1000);
 
 		var treeView = new wgp.TreeView({
@@ -93,73 +72,64 @@
 		var tabView = new wgp.TabView({})
 		appView.addViews([ treeView ]);
 
+		var treeProperty0 = {
+			type : wgp.constants.CHANGE_TYPE.ADD,
+			treeId : 0,
+			data : "Master Node",
+			id : "/masternode/graph",
+			parentTreeId : null
+		};
 		var treeProperty1 = {
 			type : wgp.constants.CHANGE_TYPE.ADD,
-			treeId : 0,
-			data : "test1",
-			attr : {
-				viewClassName : "test1View"
-			}
-		};
-		var treeProperty2 = {
-			type : wgp.constants.CHANGE_TYPE.ADD,
 			treeId : 1,
-			data : "test2"
-		};
-
-		var treeProperty3 = {
-			type : wgp.constants.CHANGE_TYPE.UPDATE,
-			treeId : 0,
-			data : "graphView",
-			id : "/graph1/graph",
-			parentTreeId : null
-		};
-
-		var treeProperty4 = {
-			type : wgp.constants.CHANGE_TYPE.UPDATE,
-			treeId : 1,
-			data : "TabMultiView",
-			id : "/graph2/graph",
-			parentTreeId : null
-		};
-
-		var treeProperty5 = {
-			type : wgp.constants.CHANGE_TYPE.ADD,
-			treeId : 2,
-			data : "Hbase",
-			id : "/hbase/hbase",
-			parentTreeId : null
-		};
-		var treeProperty6 = {
-			type : wgp.constants.CHANGE_TYPE.ADD,
-			treeId : 3,
-			data : "master",
-			id : "/master/",
+			data : "Slave Node",
+			id : "/nodeInfomation/graph",
 			parentTreeId : null
 		};
 
 		sendData = [ {
 			windowId : "tree_area",
-			data : [ treeProperty1, treeProperty2, treeProperty3,
-					treeProperty4, treeProperty5, treeProperty6 ]
+			data : [ treeProperty0, treeProperty1 ]
 		} ];
 		appView.notifyEvent(sendData);
 
 		var webSocketClientInstance = new webSocketClient(appView);
 		webSocketClientInstance.initialize();
 
-		var graphDataInterval = function(windowId, value) {
+		var graphData3Interval = function(windowId, value) {
 			var y = 0;
 			function innerFunction() {
 				var x = new Date();
 				var sin = Math.sin(y * Math.PI / 180);
 				var cos = Math.cos(y * Math.PI / 180);
-
+				var sin2 = Math.sin(y * Math.PI / 180) + 1;
 				y = y + value;
 
 				var data = {
 					type : wgp.constants.CHANGE_TYPE.ADD,
-					data : [ x, sin, cos ]
+					data : [ x, sin, cos, sin2 ]
+				}
+				var sendData = [ {
+					windowId : windowId,
+					data : [ data ]
+				} ]
+
+				appView.notifyEvent(sendData);
+
+			}
+			;
+			return innerFunction;
+		}
+		var graphDataInterval = function(windowId, value) {
+			var y = 0;
+			function innerFunction() {
+				var x = new Date();
+				var sin = Math.sin(y * Math.PI / 180);
+				y = y + value;
+
+				var data = {
+					type : wgp.constants.CHANGE_TYPE.ADD,
+					data : [ x, sin]
 				}
 				var sendData = [ {
 					windowId : windowId,
@@ -173,8 +143,11 @@
 			return innerFunction;
 		}
 
-		setInterval(graphDataInterval("Memory", 18), 1000);
-		setInterval(graphDataInterval("CPU", 25), 1000);
+		setInterval(graphData3Interval("Memory", 18), 1000);
+		setInterval(graphData3Interval("CPU", 25), 1000);
+		setInterval(graphData3Interval("osCPU", 25), 1000);
+		setInterval(graphData3Interval("CPUs", 50), 1000);
+		setInterval(graphDataInterval("nnCPU", 80), 1000);
 
 		var property1 = {
 			type : wgp.constants.CHANGE_TYPE.ADD,
@@ -193,7 +166,7 @@
 			state : wgp.constants.STATE.WARN,
 			objectName : "MapStateElementView",
 			objectId : 2,
-			pointX : 350,
+			pointX : 250,
 			pointY : 100,
 			width : 100,
 			height : 100
@@ -210,24 +183,16 @@
 		};
 
 		var mapDataInterval = function(windowId) {
-			var x = 0;
 			function innerFunction() {
 				property1["state"] = parseInt(Math.random() * 3);
 				property2["state"] = parseInt(Math.random() * 3);
 				property3["state"] = parseInt(Math.random() * 3);
+
 				var addData = [ {
 					windowId : windowId,
-					//data : [ property1, property2, property3 ]
-					data : [ property1 ]
+					data : [ property1, property2, property3 ]
 				} ];
 				appView.notifyEvent(addData);
-
-				property1["pointX"] += 30;
-				if (property1["pointX"] > 600) {
-					property1["pointX"] = 100;
-					property1["pointY"] += 20;
-				}
-
 			}
 			;
 			return innerFunction;

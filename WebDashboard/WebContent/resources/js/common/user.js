@@ -1,78 +1,32 @@
-var osMemoryGraphViewElement = {
-	viewClassName : "ResourceGraphElementView",
-	viewAttribute : {
-		width : 260,
-		height : 200,
-		graphId : "osMemory",
-		attributes : {
-			xlabel : "Time",
-			ylabel : "OS Memory",
-			labels : [ "time", "PC1", "PC2" ]
-		}
-	}
-};
-
-var osCpuGraphViewElement = {
-	viewClassName : "ResourceGraphElementView",
-	viewAttribute : {
-		title : "title",
-		width : 260,
-		height : 200,
-		graphId : "osCPU",
-		attributes : {
-			xlabel : "Time",
-			ylabel : "OS CPU ",
-			labels : [ "time", "PC1", "PC2", "PC3" ]
-		}
-	}
-};
-
-var nnCpuGraphViewElement = {
-	viewClassName : "ResourceGraphElementView",
-	viewAttribute : {
-		width : 260,
-		height : 200,
-		graphId : "nnCPU",
-		attributes : {
-			xlabel : "Time",
-			ylabel : "nn CPU",
-			labels : [ "time", "PC1", "PC2" ]
-		}
-	}
-};
 
 var memoryGraphViewElement = {
-	viewClassName : "ResourceGraphElementView",
+	viewClassName : "wgp.DygraphElementView",
 	viewAttribute : {
-		width : 260,
-		height : 200,
-		graphId : "Memory",
+		width: 300,
+		height: 300,
+		graphId: "Memory",
 		attributes : {
-			xlabel : "Time",
-			ylabel : "Memory",
-			labels : [ "time", "PC1", "PC2", "PC3" ]
+			xlabel: "Time",
+			ylabel: "Memory",
+			labels:["time","PC1","PC2"]
 		}
 	}
 };
 
 var cpuGraphViewElement = {
-	viewClassName : "ResourceGraphElementView",
+	viewClassName : "wgp.DygraphElementView",
 	viewAttribute : {
-		width : 260,
-		height : 200,
-		graphId : "CPUs",
+		width: 300,
+		height: 300,
+		graphId: "CPU",
 		attributes : {
-			xlabel : "Time",
-			ylabel : "CPU ",
-			valueRange : [ 0, 100 ],
-			labels : [ "time", "PC1", "PC2", "PC3" ]
+			xlabel: "Time",
+			ylabel: "CPU ",
+			labels:["time","PC1","PC2"]
 		}
 	}
 };
 
-var separaterElement = {
-	viewClassName : "SeparaterElementView"
-};
 
 var mapTabElement = {
 	viewClassName : "wgp.MapView",
@@ -80,32 +34,52 @@ var mapTabElement = {
 };
 
 var graphAreaTabElement = {
-	viewClassName : "wgp.MultiAreaView",
-	rootView : appView,
-	tabTitle : "Graph",
-	collection : [ memoryGraphViewElement, cpuGraphViewElement,
-			osCpuGraphViewElement, separaterElement, nnCpuGraphViewElement ]
-};
+		viewClassName 	: "wgp.MultiAreaView",
+		rootView		: appView,
+		tabTitle 		: "Graph",
+		collection 		: [memoryGraphViewElement, cpuGraphViewElement]
+	};
 
 var tabViewElement = {
-	viewClassName : "wgp.TabView",
-	rootView : appView,
-	collection : [ mapTabElement, graphAreaTabElement ]
+	viewClassName: "wgp.TabView",
+	rootView:appView,
+	collection:[mapTabElement, graphAreaTabElement]
 };
 
-var nodeInfomationViewElement = {
-	viewClassName : "NodeInfomationView",
+
+
+
+var hbaseGrowthGraphParentView = {
+		viewClassName	: "HbaseParentView"
+};
+var hbaseGrowthGraphView = {
+		viewClassName	: "HbaseView"
+};
+var sliderView = {
+		viewClassName	: "SliderView"
 };
 
-var nodeInfomationMultiElement = {
-	viewClassName : "wgp.MultiAreaView",
-	rootView : appView,
-	tabTitle : "nodeInfo",
-	collection : [ nodeInfomationViewElement ]
+
+
+var hbaseGrowthGraphField = {
+		viewClassName	: "wgp.MultiAreaView",
+		rootView		: appView,
+		//collection		: [sliderView, hbaseGrowthGraphView]
+		collection		: [hbaseGrowthGraphParentView]
+		//collection		: [hbaseGrowthGraphField]
+};
+
+var nodeInfoField = {
+		viewClassName	: "wgp.MultiAreaView",
+		rootView		: appView,
+		//collection		: [sliderView, hbaseGrowthGraphView]
+		collection		: [hbaseGrowthGraphParentView]
+		//collection		: [hbaseGrowthGraphField]
 };
 
 wgp.constants.VIEW_SETTINGS = {
 	"default" : graphAreaTabElement,
 	"/graph1/" : tabViewElement,
-	"/nodeInfomation/" : nodeInfomationMultiElement
+	"/hbase/" : hbaseGrowthGraphField,
+	"/master/" : nodeInfoField
 };

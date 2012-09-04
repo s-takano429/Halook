@@ -1,5 +1,6 @@
 var ResourceGraphAttribute = [ "colors", "labels", "valueRange", "xlabel",
 		"ylabel", "strokeWidth", "legend", "labelsDiv", "width", "height" ];
+
 var ResourceGraphElementView = wgp.DygraphElementView.extend({
 	initialize : function(argument) {
 		this.viewType = wgp.constants.VIEW_TYPE.VIEW;
@@ -13,9 +14,9 @@ var ResourceGraphElementView = wgp.DygraphElementView.extend({
 
 		this.attributes = argument["attributes"];
 		this.maxId = 0;
+
 		var dataArray = argument["dataArray"];
 
-		
 		var realTag = $("#" + this.$el.attr("id"));
 		if (this.width == null) {
 			this.width = realTag.width();
@@ -35,8 +36,7 @@ var ResourceGraphElementView = wgp.DygraphElementView.extend({
 			this.render();
 		}
 		console.log("#" + this.$el.attr("id"));
-		$("#" + this.$el.attr("id")).attr("class", "graphbox");
-		$("#" + this.$el.attr("id")).prepend("<h2>" + this.title + "</h2>");
+		$("#" + this.$el.attr("id")).append("<p>" + this.title + "</p><br>");
 		$("#" + this.$el.attr("id")).css({
 			margin : "10px",
 			float : "left"
@@ -49,16 +49,13 @@ var ResourceGraphElementView = wgp.DygraphElementView.extend({
 		this.entity = new Dygraph(document.getElementById(this.$el.attr("id")),
 				data, this.getAttributes(ResourceGraphAttribute));
 
-		this.entity.resize(this.width, this.height - 50);
-		$("#" + this.$el.attr("id")).prepend("<h2>" + this.title + "</h2>");
-		$("#" + this.$el.attr("id")).height(this.height);
-
+		this.entity.resize(this.width, this.height);
 	},
 	onAdd : function(graphModel) {
 		var dataArray = [];
-		// if (this.collection.length > graphMaxNumber) {
-		// this.collection.shift(wgp.constants.BACKBONE_EVENT.SILENT);
-		// }
+		if (this.collection.length > graphMaxNumber) {
+			this.collection.shift(wgp.constants.BACKBONE_EVENT.SILENT);
+		}
 
 		_.each(this.collection.models, function(model, index) {
 			dataArray.push(model.get("data"));

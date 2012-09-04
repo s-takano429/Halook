@@ -9,7 +9,8 @@ wgp.DygraphAttribute = [
     "legend",
     "labelsDiv",
     "width",
-    "height"
+    "height",
+    "zoomCallback"
 ];
 
 var graphMaxNumber = 20;
@@ -72,6 +73,8 @@ wgp.DygraphElementView = wgp.AbstractView.extend({
 		}else{
 			this.entity.updateOptions({file: dataArray});
 		}
+		
+		//console.log('call onAdd (other)');
 	},
 	addCollection:function(dataArray){
 		if(dataArray != null){
