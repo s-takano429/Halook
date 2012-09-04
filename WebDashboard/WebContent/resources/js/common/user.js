@@ -52,6 +52,16 @@ var tabViewElement = {
 var hbaseGrowthGraphParentView = {
 		viewClassName	: "HbaseParentView"
 };
+var nodeInfoParentView = {
+		viewClassName	: "halook.NodeInfoParentView",
+		viewAttribute : {
+			ids : {
+				dualSliderArea : "sliderArea",
+				graphArea : "graphArea"
+			}
+		}
+
+};
 var hbaseGrowthGraphView = {
 		viewClassName	: "HbaseView"
 };
@@ -72,9 +82,7 @@ var hbaseGrowthGraphField = {
 var nodeInfoField = {
 		viewClassName	: "wgp.MultiAreaView",
 		rootView		: appView,
-		//collection		: [sliderView, hbaseGrowthGraphView]
-		collection		: [hbaseGrowthGraphParentView]
-		//collection		: [hbaseGrowthGraphField]
+		collection		: [nodeInfoParentView]
 };
 
 wgp.constants.VIEW_SETTINGS = {

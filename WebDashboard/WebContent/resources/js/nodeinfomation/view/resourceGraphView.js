@@ -1,7 +1,7 @@
 var ResourceGraphAttribute = [ "colors", "labels", "valueRange", "xlabel",
 		"ylabel", "strokeWidth", "legend", "labelsDiv", "width", "height" ];
-
-var ResourceGraphElementView = wgp.DygraphElementView.extend({
+;
+halook.ResourceGraphElementView = wgp.DygraphElementView.extend({
 	initialize : function(argument) {
 		this.viewType = wgp.constants.VIEW_TYPE.VIEW;
 		this.collection = new ResourceGraphCollection();
@@ -11,6 +11,7 @@ var ResourceGraphElementView = wgp.DygraphElementView.extend({
 		this.width = argument["width"];
 		this.height = argument["height"];
 		this.title = argument["title"];
+		this.rootView = argument["rootView"];
 
 		this.attributes = argument["attributes"];
 		this.maxId = 0;
@@ -91,5 +92,19 @@ var ResourceGraphElementView = wgp.DygraphElementView.extend({
 	},
 	getRegisterId : function() {
 		return this.graphId;
+	},
+	getGraphObject : function(){
+		return this.entity;
+	},
+	updateDisplaySpan: function(from, to){
+		var earliest = this.nowtime - from;
+		var latest = this.nowtime - to;
+
+		this.getGraphObject().updateOptions({
+			dateWindow : [earliest, latest]
+		});
+
+		this._setAnnotationCss();
 	}
+
 });

@@ -2,6 +2,9 @@
 <html>
 <head>
 <%@ include file="../common/javaScriptInclude.jsp"%>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/nodeInfo/nodeStyles.css"
+	type="text/css" media="all">
 <%-- hbase graph --%>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/hbase/mock/hbaseData.js">
@@ -19,6 +22,7 @@
 	src="<%=request.getContextPath()%>/resources/js/hbase/view/hbaseView.js">
 
 </script>
+
 
 <%-- dual slider --%>
 <script type="text/javascript"
@@ -42,6 +46,23 @@
 	src="<%=request.getContextPath()%>/resources/js/hbase/view/hbaseParentView.js">
 
 </script>
+
+<%-- nodeInfo graph --%>
+
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/nodeInfoParentView.js">
+
+</script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/resourceGraphView.js">
+
+</script>
+</script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/model/resourceGraphModel.js">
+
+</script>
+
 
 </head>
 
