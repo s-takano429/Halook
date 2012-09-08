@@ -1,6 +1,6 @@
 var ResourceGraphAttribute = [ "colors", "labels", "valueRange", "xlabel",
 		"ylabel", "strokeWidth", "legend", "labelsDiv", "width", "height" ];
-;
+halook.GraphHeightMargin = 50;
 halook.ResourceGraphElementView = wgp.DygraphElementView.extend({
 	initialize : function(argument) {
 		this.viewType = wgp.constants.VIEW_TYPE.VIEW;
@@ -12,11 +12,12 @@ halook.ResourceGraphElementView = wgp.DygraphElementView.extend({
 		this.height = argument["height"];
 		this.title = argument["title"];
 		this.rootView = argument["rootView"];
-
+		this.graphHeight = this.height - halook.GraphHeightMargin;
 		this.attributes = argument["attributes"];
 		this.maxId = 0;
 
 		var dataArray = argument["dataArray"];
+		dataArray = this._makeRandomData();
 
 		var realTag = $("#" + this.$el.attr("id"));
 		if (this.width == null) {
@@ -29,15 +30,15 @@ halook.ResourceGraphElementView = wgp.DygraphElementView.extend({
 		} else {
 			realTag.height(this.height);
 		}
-
+		
 		this.entity = null;
 		this.registerCollectionEvent();
 		if (dataArray && dataArray.length > 0) {
 			this.addCollection(dataArray);
 			this.render();
 		}
-		console.log("#" + this.$el.attr("id"));
-		$("#" + this.$el.attr("id")).append("<p>" + this.title + "</p><br>");
+		$("#" + this.$el.attr("id")).attr("class", "graphbox");
+		// $("#" + this.$el.attr("id")).prepend("<h2>" + this.title + "</h2>");
 		$("#" + this.$el.attr("id")).css({
 			margin : "10px",
 			float : "left"
@@ -46,12 +47,30 @@ halook.ResourceGraphElementView = wgp.DygraphElementView.extend({
 	},
 	render : function() {
 		var data = this.getData();
+
 		$("#" + this.$el.attr("id")).append("<p>" + this.title + "</p><br>");
 		this.entity = new Dygraph(document.getElementById(this.$el.attr("id")),
 				data, this.getAttributes(ResourceGraphAttribute));
 
-		this.entity.resize(this.width, this.height);
+		this.entity.resize(this.width, this.graphHeight);
+		$("#" + this.$el.attr("id")).prepend("<h2>" + this.title + "</h2>");
+		$("#" + this.$el.attr("id")).height(this.height);
 	},
+	_makeRandomData : function() {
+		var dataArray = [];
+		var today = new Date();
+		var agoTime = new Date();
+		agoTime.setTime(today.getTime() - 24 * 60 * 60 * 1000);
+		while (today.getTime() > agoTime.getTime()) {
+			var time = agoTime.getTime() + 60 * 15 * 1000;
+			agoTime.setTime(time);
+			var setTime = new Date(time);
+			dataArray.push([ setTime, parseInt(Math.random() * 100),
+					parseInt(Math.random() * 100) ]);
+		}
+		return dataArray;
+	},
+
 	onAdd : function(graphModel) {
 		var dataArray = [];
 		if (this.collection.length > graphMaxNumber) {
@@ -93,18 +112,17 @@ halook.ResourceGraphElementView = wgp.DygraphElementView.extend({
 	getRegisterId : function() {
 		return this.graphId;
 	},
-	getGraphObject : function(){
+	getGraphObject : function() {
 		return this.entity;
 	},
-	updateDisplaySpan: function(from, to){
+	updateDisplaySpan : function(from, to) {
 		var earliest = this.nowtime - from;
 		var latest = this.nowtime - to;
 
 		this.getGraphObject().updateOptions({
-			dateWindow : [earliest, latest]
+			dateWindow : [ earliest, latest ]
 		});
 
-		this._setAnnotationCss();
 	}
 
 });

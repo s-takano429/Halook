@@ -8,59 +8,59 @@
 <%-- hbase graph --%>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/hbase/mock/hbaseData.js">
-
+	
 </script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/hbase/model/hbaseModel.js">
-
+	
 </script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/hbase/mock/hbaseMock.js">
-
+	
 </script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/hbase/view/hbaseView.js">
-
+	
 </script>
 
 
 <%-- dual slider --%>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/common/selectToUISlider.jQuery.js">
-
+	
 </script>
 <link rel="Stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/hbase/ui.slider.extras.css"
 	type="text/css" />
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/hbase/view/DualSliderView.js">
-
+	
 </script>
 
 <%-- parent view --%>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/hbase/model/hbaseParentModel.js">
-
+	
 </script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/hbase/view/hbaseParentView.js">
-
+	
 </script>
 
 <%-- nodeInfo graph --%>
 
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/nodeInfoParentView.js">
-
+	
 </script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/resourceGraphView.js">
-
+	
 </script>
 </script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/model/resourceGraphModel.js">
-
+	
 </script>
 
 
@@ -103,9 +103,9 @@
 		type="text/javaScript"></script>
 
 	<script>
-		setInterval(function() {
-			hbaseMock()
-		}, 1000);
+		//		setInterval(function() {
+		//		hbaseMock()
+		//		}, 1000);
 
 		var treeView = new wgp.TreeView({
 			id : "tree_area",
